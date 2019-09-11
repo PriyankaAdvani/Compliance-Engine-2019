@@ -1,0 +1,19 @@
+<!-- Modal Dialog Box to Add New Rule-->
+<div >
+    <div class="modal-header">
+        <h3 class="modal-title">Add New Rule</h3>
+    </div>
+    <div class="modal-body">
+    <form name = "addRuleForm">
+        <div><label>ID: </label><span id="data1"><input ng-model = "addRule.id" type = "text" placeholder="id" title="id" /></span></div>
+        <br><<div><label>Name: </label><span id="data1"><input ng-model = "addRule.name" class="form-control" type = "text" placeholder="name" title=" name" /></span></div>
+        <br><div><label>Description:</label><span id="data1"><input ng-model = "addRule.description" class="form-control" type = "text" placeholder="description" title="description" /></span> </div>
+        <br><div><label>Compliance Condition:</label> <span id="data1"> <input ng-model = "addRule.condition" class="form-control" type = "textarea" placeholder="condition" title="condition" /></span></div>
+    </form>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+<!--ruleDetails.html - Rules Section -->
+
+<!-- Rule Details Display Page-->
+<div id="content">
+  <section id="directives" >
+        <div class="page-header">
+          <h2>Blockchain Solution: {{ title }}</h2>
+        </div>
+  <br><br>
+
+<div class="container">
+    <h1>List of Rules</h1>
+      <div class="row">
+        <div class="col-lg-10">
+          <div class="bar">
+                <input type="text" ng-model="search_name" placeholder="Search Rules" />
+          </div>
+          <ul class="items">
+
+            <span id="data2">
+              <li><h4>Select/Unselect All
+                <div class="btn-group">
+                  <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />
+                </div>
+                </h4></li>
+
+                  <li ng-repeat="rule in rules  | filter:{ name: search_name} | startFrom:currentPage*pageSize | limitTo:pageSize" >
+
+                    <h3 ng-click="showRules1(rule)" >
+                    {{ rule.id }} :&nbsp;
+                    {{ rule.name }}
+
+                    <div class="btn-group">
+                    <input id="{{ rule.id }}" type="checkbox" ng-model="rule.Selected" />
+                    <button class="btn btn-default btn-xs" ng-click="editRules(rule)"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button class="btn btn-danger btn-xs" ng-click="removeRule(rule)"><span class="glyphicon glyphicon-trash"</span></button>
+                  </div>
+                  </h3>
+                  <h4> {{ rule.description}}
+                  </h4>
+
+                </li>
+            </span>
+          </ul>
+        </div>
+        <div class="col-lg-2">
+            <div id="second">
+               <legend>Add New Rule</legend>
+               <p> To add a new Rule, Please click on the Button below. </p>
+               <button class="btn btn-primary" ng-click="open()">Add New Rule </button>
+            </div>
+        </div>
+
+        </div>
+        <div class="col-lg-8 btn-group1">
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+                {{currentPage+1}}/{{numberOfPages()}}
+            <button ng-disabled="currentPage >= rules.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+        </div><br><br>
+
+        <div class="col-lg-8 btn-group1">
+            <button type="button" value="Start Analysis" ng-click="showConfirm($event)">Start Analysis </button>
+            <button type="button" scrollable ng-click="backToTop()">Back to Top</button>
+        </div>
+
+
+
+</div> <!-- End of container div-->
+
+
+<!-- Edit-Modal Dialog box to be displayed on Edit of Rule content-->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title" id="myModalLabel">{{selected.name}} Rule Details</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="flex-container">
+                        <!-- Half of the modal-body div-->
+                        <div style="flex-grow: 2">
+                            <div><label>Name: </label><span id="data1">{{selected.name}}</span></div>
+                            <br><br><div><label>Description:</label><span id="data1">{{selected.description }}</span> </div>
+                            <br><br><div class="text-style"><label>Compliance Condition:</label> <span id="data1"> <textarea ng-keyup="autoExpand($event)">{{selected.condition}}</textarea></span></div>
+                        </div>
+                        <!-- Other half of the modal-body div-->
+                        <div style="flex-grow: 1" id="asset">
+                          <h3>Asset Schema</h3>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                    </div>
+                  </div>
+              </div>
+            </div>  <!-- End of edit-modal div-->
+
+<!-- Show-Modal Dialog box to display Rule content-->
+            <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title" id="myModalLabel">{{selected.name}} Rule Details</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="flex-container">
+                        <!-- Half of the modal-body div-->
+                        <div style="flex-grow: 3">
+                          <div><label>Name: </label><span id="data1">{{selected.name}}</span></div>
+                          <br><div><label>Description:</label><span id="data1">{{selected.description }}</span> </div>
+                          <br><div class="text-style"><label>Compliance Condition:</label> <span id="data1"> {{selected.condition}}</span></div>
+                        </div>
+                        <!-- Other half of the modal-body div-->
+                        <div style="flex-grow: 1" id="second">
+                          <h3>Asset Schema</h3>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>   <!-- End of show-modal div-->
+
+</section>
+</div>
+
+<!-- CSS style sheet -->
+<link rel="stylesheet" href="css/rules.css"></link>

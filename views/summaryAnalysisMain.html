@@ -1,0 +1,49 @@
+<!-- summaryAnalysisMain.html - Summary Section for Main page -->
+
+<!-- Container -->
+<div class="summaryMain">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Last Session Analysis Summary</h2><br>
+        <h4><strong>Total:</strong> 107000 assets</h4>
+        <h4>Assets Breakdown:</h4>
+          <p>&nbsp;  - Traffic Violation: 14500 Assets</p>
+          <p>&nbsp;  - Registration: 17000 Assets</p>
+          <p>&nbsp;  - Drivers License: 25000 Assets </p>
+          <p>&nbsp;  - Insurance: 50500 Assets</p>
+      </div>
+    </div>
+    <div class="row justify-content-around" id="bar-chart">
+         <div class="col-sm-12" ng-repeat="module in summary.result">
+             <div class="panel panel-default">
+                 <div class="panel-heading">{{module.ruleName}} <br>
+                      Total Assets: {{module.ta}} &emsp;  Compliant Assets: {{module.ca}}  &emsp; Non-Compliant Assets: {{module.nca }}
+                  </div>
+                 <div class="panel-body" >
+                      <div class="col-sm-6">
+                       <canvas id="bar{{$index}}" class="chart chart-line"
+                                chart-data="module.dataC"
+                                chart-labels="module.labels" chart-series="module.seriesC"
+                                chart-options="options" chart-colors="colours"
+                                chart-click="onClick" chart-hover="onHover"
+                                chart-dataset-override="datasetOverride">
+                       </canvas>
+                      </div>
+                      <div class="col-sm-6">
+                        <canvas id="bar{{$index}}" class="chart chart-line"
+                                 chart-data="module.dataNC"
+                                 chart-labels="module.labels" chart-series="module.seriesNC"
+                                 chart-options="options" chart-colors="colours"
+                                 chart-dataset-override="datasetOverride">
+                        </canvas>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+<!-- CSS style sheet -->
+<link rel="stylesheet" href="css/charts.css"></link>

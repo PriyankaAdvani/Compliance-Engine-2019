@@ -1,0 +1,47 @@
+<!--Index.html (Starting point for Application)-->
+
+<!-- Container (About Section) -->
+<div id="content">
+  <section id="directives" >
+      <div class="page-header">
+          <h2>Compliance Engine Editor</h2>
+      </div>
+
+
+      <!-- Container (About Section) -->
+
+      <div id="about" class="container-fluid">
+        <div class="row">
+          <div class="col-sm-8">
+            <h2>Overview</h2><br>
+            <h4> A Compliance Engine editor where analysts can input rules and the compliance engine
+              will check whether blockchain records conform to those rules.</h4><br>
+            <p>Integrates with a rules engine, for example: IBM's Operational Decision Manager (ODM) – extends and modify the Compliance engine to leverage ODM for rule definition and Rule execution.
+            <br>Data aggregations – Extends and modify the Compliance engine to provide statistical data aggregation functions – functions which allows to either statistically aggregate asset data prior rule checking or to statistically aggregate results of rule checking post analysis for reporting purposes.
+            <br>Scalability - Extends and modify the Compliance engine to leverage Spark (or other cluster computing framework) to allow processing of large data sets and large sets of rules.</p>
+          </div>
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-signal logo"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid bg-grey">
+        <div class="row">
+          <div class="col-sm-4">
+            <span class="glyphicon glyphicon-wrench logo"></span>
+          </div>
+          <div class="col-sm-8">
+            <h2>Technical Details</h2><br>
+            <h4><strong>Technical:</strong> A Compliance Engine Editor lets Analysts Add, Edit or Delete the rules. It also provides the functionality to select the rules from a list of rules to be analyzed against the Blockchain Data.</h4><br>
+            <p><strong>Languages Used:</strong> The Engine Editor is using AngularJS Web-framework and the APIs to communicate with the Blockchain Database.</p>
+          </div>
+        </div>
+      </div>
+
+      <div ng-include="'views/summaryAnalysisMain.html'" ng-controller="SummaryController"></div>
+    </section>
+</div>
+
+<!-- CSS style sheet -->
+<link rel="stylesheet" href="css/rules.css"></link>

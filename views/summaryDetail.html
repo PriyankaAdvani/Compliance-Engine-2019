@@ -1,0 +1,100 @@
+<!-- summaryDetail.html - Details Section -->
+
+<!-- Container -->
+<div id="content">
+    <section id="directives" >
+
+        <!--Page Heading -->
+        <div class="page-header">
+            <h2>Blockchain Solution: {{ title}}</h2>
+        </div>
+        <br><br>
+
+        <div id="chartSection" class="container">
+          <h1>Compliance Details</h1>
+
+          <!--Charts Header Control Section -->
+           <div class="row justify-content-around" id="bar-chart" md-theme="{{theme}}" md-theme-watch="true">
+                <div class="col-md-12">
+                   <md-toolbar class="md-whiteframe-2dp md-toolbar-tools">
+                     <div class="outer">
+                     <div class="inside">
+                       <label><u>Rules Analysis Details</u></label>
+                     </div>
+
+                      <div class="inside">
+                       <label><input type="radio" ng-model="data.cb1" value="absolute">Absolute</label>
+                       <label><input type="radio" ng-model="data.cb1" value="percentage">Percentage</label>
+                      </div>
+
+                      <div class="inside">
+                        <label><input type="radio" ng-change="toggle('bar')" value="bar" ng-model="chartLine" >Bar</label>
+                        <label><input type="radio" ng-change="toggle('line')" value="line" ng-model="chartLine" >Line</label>
+                       </div>
+                      </div>
+                   </md-toolbar>
+                </div>
+
+                <!--Charts Section -->
+                <div class="col-md-12" ng-repeat="module in ocw.modules">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">Rule: {{ module.ruleName}} <br>
+                         <p>Total Assets: {{module.ta}} &emsp;  Compliant Assets: {{module.ca}}  &emsp; Non-Compliant Assets: {{module.nca}}</p>
+                       </div>
+                      <div class="panel-body" ng-switch="data.cb1">
+                          <!--Charts Section for Absolute Values-->
+                          <div ng-switch-when="absolute">
+                             <div class="col-md-6">
+                              <canvas id="bar{{index}}" class="chart-base" chart-type="type"
+                                       chart-data="module.dataC"
+                                       chart-labels="module.labels" chart-series="module.seriesC"
+                                       chart-options="options" chart-colors="colours"
+                                       chart-click="onClick" chart-hover="onHover"
+                                       chart-dataset-override="DataSetOverride">
+                              </canvas>
+                            </div>
+                           <div class="col-md-6">
+                              <canvas id="bar{{$index}}" class="chart-base" chart-type="type"
+                                       chart-data="module.dataNC"
+                                       chart-labels="module.labels" chart-series="module.seriesNC"
+                                       chart-options="options" chart-colors="colours"
+                                       chart-dataset-override="DataSetOverride">
+                              </canvas>
+                           </div>
+                          </div>
+
+                          <!--Charts Section for Percentage Values-->
+                          <div ng-switch-when="percentage">
+                             <div class="col-md-6">
+                              <canvas id="bar{{index}}" class="chart-base" chart-type="type"
+                                       chart-data="module.dataPC"
+                                       chart-labels="module.labels" chart-series="module.seriesC"
+                                       chart-options="optionsP" chart-colors="colours"
+                                       chart-click="onClick" chart-hover="onHover"
+                                       chart-dataset-override="DataSetOverride">
+                              </canvas>
+                            </div>
+                           <div class="col-md-6">
+                              <canvas id="bar{{$index}}" class="chart-base" chart-type="type"
+                                       chart-data="module.dataPNC"
+                                       chart-labels="module.labels" chart-series="module.seriesNC"
+                                       chart-options="optionsP" chart-colors="colours"
+                                       chart-dataset-override="DataSetOverride">
+                              </canvas>
+                           </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+           </div>
+
+
+        </div>
+          
+
+  </section>
+
+</div>
+
+<!-- CSS style sheet -->
+<link rel="stylesheet" href="css/charts.css"></link>
