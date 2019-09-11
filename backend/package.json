@@ -1,0 +1,36 @@
+{
+  "name": "Compliance-Analysis-Asset-Rule-Checker",
+  "version": "1.0.0",
+  "description": "Asset rule checking module",
+  "main": "index.js",
+  "scripts": {
+    "load-data": "sh SampleData/load.sh",
+    "test": "mocha --recursive && npm run bootstrapAssets && npm run listAssets",
+    "postinstall": ""
+  },
+  "keywords": [
+    "Blockchain",
+    "Compliance",
+    "Analysis"
+  ],
+  "author": "IBM - Enterprise Solutions",
+  "license": "IBM",
+  "dependencies": {
+    "winston": "latest",
+    "jsonpath-plus": "latest",
+    "nano": "latest",
+    "make-runnable": "latest",
+    "config": "latest",
+    "assert": "latest",
+    "async": "^2.5.0",
+    "callsite": "^1.0.0",
+    "fabric-ca-client": "^1.0.1",
+    "fabric-client": "^1.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chai-things": "^0.2.0",
+    "mocha": "^3.2.0"
+  }
+}

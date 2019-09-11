@@ -1,0 +1,82 @@
+{
+  "ledger-parser": {
+    "wallet-path": "./creds",
+    "username": "PeerAdmin",
+    "channel-id": "mychannel",
+    "peer-url": "grpc://localhost:7051",
+    "orderer-url": "grpc://localhost:7050",
+    "state-couchdb-url": "http://localhost:5984",
+    "transaction-couchdb-url": "http://localhost:5984",
+    "reset-transaction-db": "true",
+    "transaction-db-name": "mychannel-tx"
+  },
+  "transaction-parser": {
+    "asset-db-name": "mychannel-assets",
+    "asset-couchdb-url": "http://localhost:5984",
+    "transaction-db-name": "mychannel-tx",
+    "transaction-couchdb-url": "http://localhost:5984"
+  },
+  "asset-parser": {
+    "asset-db-name": "mychannel-assets",
+    "asset-couchdb-url": "http://localhost:5984"
+  },
+  "analysis-output": {
+    "couchdb-url": "http://localhost:5984",
+    "results-db": "mychannel-results",
+    "write-into-console": "true",
+    "reset-results-db": "true"
+  },
+  "remote": {
+    "ledger-parser": {
+      "wallet-path": "./creds",
+      "username": "peerorg1Admin",
+      "channel-id": "mychannel",
+      "peer-url": "grpc://129.40.157.6:7061",
+      "orderer-url": "grpcs://129.40.157.6:5005",
+      "state-couchdb-url": "http://localhhost:15984/",
+      "transaction-couchdb-url": "http://129.40.157.6:15984/",
+      "reset-transaction-db": "true",
+      "transaction-db-name": "mychannel-tx"
+    },
+    "transaction-parser": {
+      "asset-db-name": "mychannel-assets",
+      "asset-couchdb-url": "http://129.40.157.6:15984/",
+      "transaction-db-name": "mychannel-tx",
+      "transaction-couchdb-url": "http://129.40.157.6:15984/"
+    },
+    "asset-parser": {
+      "asset-db-name": "mychannel-assets",
+      "asset-couchdb-url": "http://129.40.157.6:15984/"
+    },
+    "analysis-output": {
+      "couchdb-url": "http://129.40.157.6:15984/",
+      "results-db": "mychannel-results",
+      "write-into-console": "true",
+      "reset-results-db": "true"
+    },
+  "analysis": {
+    "root-filter": {
+      "asset-type": "record",
+      "chaincode_id": "",
+      "namespace": "",
+      "tx_type": "",
+      "is_delete": "",
+      "key": {"$regex": "^rec"}
+    },
+    "joins": [],
+    "rules": [
+      {
+    		"name": "name_rule1",
+    		"priority": 1,
+    		"when": "function (asset, result) {return (asset.value.VENDOR_NAMEcharAt(0).toUpperCase() < 'C'); }",
+    		"then": "function (asset, result) {result.name_rule1 = true;}"
+    	},
+      {
+    		"name": "name_rule2",
+    		"priority": 1,
+    		"when": "function (asset, result) {return (asset.value.VENDOR_NAMEcharAt(0).toUpperCase() > 'V'); }",
+    		"then": "function (asset, result) {result.name_rule2 = true;}"
+    	}
+    ]
+  }
+}
